@@ -6,7 +6,7 @@ import UserTable from '../components/pages/UserPage/UserTable';
 import UserPage from '../components/pages/UserPage/UserPage';
 import authorities from '../config/Authorities';
 import UserLoggedInHomePage from '../components/pages/UserPage/UserLoggedInHomePage';
-import AdminPage from "../components/pages/AdminPage";
+import AdminHomePage from "../components/pages/AdminPage";
 
 /**
  * Router component renders a route switch with all available pages
@@ -24,7 +24,7 @@ const Router = () => {
 
             <Route
                 path={'/users'}
-                element={<PrivateRoute requiredAuths={[]} element={<UserTable/>}/>}
+                element={<PrivateRoute requiredAuths={[authorities.USER_MODIFY]} element={<UserTable/>}/>}
             />
             <Route
                 path='/useredit'
@@ -39,7 +39,7 @@ const Router = () => {
                 path='/useredit/:userId'
                 element={
                     <PrivateRoute
-                        requiredAuths={[authorities.USER_READ]}
+                        requiredAuths={[]}
                         element={<UserPage/>}
                     ></PrivateRoute>
                 }
@@ -53,13 +53,12 @@ const Router = () => {
                     ></PrivateRoute>
                 }
             />
-
             <Route
                 path='/admin-home'
                 element={
                     <PrivateRoute
-                        requiredAuths={[authorities.ADMIN_ACCESS]}
-                        element={<AdminPage />}
+                        requiredAuths={[]}
+                        element={<AdminHomePage/>}
                     ></PrivateRoute>
                 }
             />

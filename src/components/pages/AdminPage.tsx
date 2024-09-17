@@ -1,18 +1,25 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
-const AdminPage = () => {
+const AdminHomePage = () => {
+    const navigate = useNavigate();
+
+    const handleManageUsers = () => {
+        navigate('/users');  // Hier wird zu /users navigiert
+    };
+
     return (
-        <Box
-            display='flex'
-            alignItems='center'
-            justifyContent='center'
-            flexDirection='column'
-        >
-            <Typography variant="h1">Admin Page</Typography>
-            <Typography>This page is only accessible to Admins.</Typography>
+        <Box display="flex" alignItems="center" justifyContent="center" flexDirection="column">
+            <h1>Welcome to the Admin Dashboard</h1>
+            <Button
+                variant="contained"
+                onClick={handleManageUsers}  // Der Button führt handleManageUsers aus
+            >
+                Manage Users
+            </Button>
         </Box>
     );
 };
 
-export default AdminPage;
+export default AdminHomePage;
