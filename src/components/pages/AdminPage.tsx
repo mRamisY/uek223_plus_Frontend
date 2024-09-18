@@ -6,7 +6,7 @@ const AdminHomePage = () => {
     const navigate = useNavigate();
 
     const handleManageUsers = () => {
-        navigate('/users');  // Hier wird zu /users navigiert
+        navigate('/users');
     };
 
     return (
@@ -14,7 +14,7 @@ const AdminHomePage = () => {
             <h1>Welcome to the Admin Dashboard</h1>
             <Button
                 variant="contained"
-                onClick={handleManageUsers}  // Der Button führt handleManageUsers aus
+                onClick={handleManageUsers}
             >
                 Manage Users
             </Button>

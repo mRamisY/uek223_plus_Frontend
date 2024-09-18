@@ -14,11 +14,19 @@ const UserPage = () => {
   useEffect(() => {
     if (!currentUser) {
       navigate('/login');
-    } else if (currentUser.id !== userId && !checkRole('ADMIN')) {
+    } else if (userId && currentUser.id !== userId && !checkRole('ADMIN')) {
       navigate('/unauthorized');
     } else if (userId) {
       UserService.getUser(userId).then((res) => {
         setUser(res);
+      });
+    } else {
+      setUser({
+        id: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        roles: [],
       });
     }
   }, [userId, currentUser, checkRole, navigate]);
