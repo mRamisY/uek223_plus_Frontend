@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Box, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ActiveUserContext from '../../../Contexts/ActiveUserContext';
+import ShowGroupsButton from "../../molecules/ShowGroupsButton";
 
 const UserLoggedInHomePage = () => {
     const { user } = useContext(ActiveUserContext);
@@ -16,6 +17,7 @@ const UserLoggedInHomePage = () => {
             >
                 View My Information
             </Button>
+            <ShowGroupsButton isAdmin={false} userGroupId={user?.id || null} />
         </Box>
     );
 };

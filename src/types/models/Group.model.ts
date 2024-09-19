@@ -1,10 +1,11 @@
 export interface Group {
     id: string;
-    name: string;
-    motto: string;
-    logoUrl: string;
-    members: GroupMember[];
+    groupName: string;
+    groupMotto: string;
+    groupLogoUrl: string;
+    memberEmails: string[];
 }
+
 
 export interface GroupMember {
     id: string;

@@ -7,6 +7,9 @@ import UserPage from '../components/pages/UserPage/UserPage';
 import authorities from '../config/Authorities';
 import UserLoggedInHomePage from '../components/pages/UserPage/UserLoggedInHomePage';
 import AdminHomePage from "../components/pages/AdminPage";
+import GroupDetails from "../components/pages/GroupDetailsPage";
+import GroupEditPage from "../components/pages/GroupEditPage";
+import CreateGroupForm from "../components/pages/CreateGroupForm";
 
 /**
  * Router component renders a route switch with all available pages
@@ -62,7 +65,33 @@ const Router = () => {
                     ></PrivateRoute>
                 }
             />
-
+            <Route
+                path='/groups/:groupId'
+                element={
+                    <PrivateRoute
+                        requiredAuths={[]}
+                        element={<GroupDetails />}
+                    />
+                }
+            />
+            <Route
+                path='/groups/edit/:groupId'
+                element={
+                    <PrivateRoute
+                        requiredAuths={[authorities.GROUP_MODIFY]}
+                        element={<GroupEditPage />}
+                    />
+                }
+            />
+            <Route
+                path='/admin/create-group'
+                element={
+                    <PrivateRoute
+                        requiredAuths={[authorities.GROUP_CREATE]}
+                        element={<CreateGroupForm />}
+                    />
+                }
+            />
             <Route path='*' element={<div>Not Found</div>}/>
         </Routes>
     );
