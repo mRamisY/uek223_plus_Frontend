@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
+import {Navigate, useLocation} from 'react-router-dom';
 import * as jwt from 'jsonwebtoken';
 import ActiveUserContext from '../Contexts/ActiveUserContext';
 import AuthorityService from '../Services/AuthorityService';
@@ -21,6 +21,7 @@ const PrivateRoute: React.FC<Props> = ({
   element: RouteComponent,
 }) => {
   const activeUserContext = useContext(ActiveUserContext);
+  const location = useLocation();
   /**
    * isLoggedIn checks if the token, which is saved inside the localStorage,
    * exists, isn't expired yet and has been issued by the correct issuer.
@@ -47,6 +48,13 @@ const PrivateRoute: React.FC<Props> = ({
   if (!isLoggedIn()) {
     activeUserContext.logout();
     return <Navigate to='/login' replace={true} />;
+  }
+  /**
+   * Check if the active user has the ADMIN role. If true, redirect the user to the Admin-Homepage.
+   */
+  const isAdmin = activeUserContext.checkRole('ADMIN');
+  if (isAdmin && location.pathname === '/user-home') {
+    return <Navigate to="/admin-home" replace={true} />;
   }
   /**
    * Check if the active user has at least 1 of the needed authorities.

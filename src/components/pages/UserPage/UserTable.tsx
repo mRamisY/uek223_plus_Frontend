@@ -18,7 +18,7 @@ const UserTable = () => {
   }, []);
 
   const handleAdd = () => {
-    navigate('../useredit/');
+    navigate('../useredit');
   };
 
   const handleEdit = (id: string) => {
