@@ -50,8 +50,3 @@ Sie könne sich mit zwei verschiedenen Logins anmelden. Eines währe der Admin, 
 <p> Nun haben Sie das aufsetzen Beendet und wir wünschen Ihnen viel Spass beim Testen!</p>
 
 
-  
-
-
-
-## Components
