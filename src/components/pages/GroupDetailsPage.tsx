@@ -13,6 +13,7 @@ const GroupDetails = () => {
 
     const isAdmin = activeUserContext.checkRole('ADMIN');
 
+    // Fetches group details from the API based on groupId whenever groupId changes
     useEffect(() => {
         if (groupId) {
             GroupService.getGroup(groupId).then((response) => {
@@ -21,32 +22,36 @@ const GroupDetails = () => {
         }
     }, [groupId]);
 
+    // Handler for deleting the group, confirms with the user before proceeding
     const handleDeleteGroup = () => {
         if (window.confirm("Are you sure you want to delete this group?")) {
             GroupService.deleteGroup(groupId!).then(() => {
-                navigate('/admin-home'); // Redirect to admin home after delete
+                navigate('/admin-home');
             });
         }
     };
 
+    // Redirects to the group editing page if the group is set
     const handleEditGroup = () => {
         if (group) {
             navigate(`/groups/edit/${group.id}`);
         }
     };
 
+    // Returns a loading indicator until the group details are loaded
     if (!group) {
         return <div>Loading...</div>;
     }
 
     return (
         <div>
+            {/* Displays group information including logo, name, and motto */}
             <Box display="flex" alignItems="center" flexDirection="column" gap={2}>
                 <Avatar src={group.groupLogoUrl} alt={group.groupName} sx={{ width: 100, height: 100 }} />
                 <Typography variant="h4">{group.groupName}</Typography>
                 <Typography variant="subtitle1">{group.groupMotto}</Typography>
 
-                {/* List group members */}
+                {/* Displays a list of group members' emails */}
                 <List>
                     {group.memberEmails.map((email) => (
                         <ListItem key={email}>
@@ -55,7 +60,7 @@ const GroupDetails = () => {
                     ))}
                 </List>
 
-                {/* Only show Edit and Delete buttons if the user is an admin */}
+                {/* If the user is an admin, show Edit and Delete buttons */}
                 {isAdmin && (
                     <Box display="flex" gap={2}>
                         <Button variant="contained" color="primary" onClick={handleEditGroup}>

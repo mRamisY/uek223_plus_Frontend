@@ -15,6 +15,7 @@ const GroupEditPage = () => {
     });
     const navigate = useNavigate();
 
+    // Fetch the group details when groupId changes, and update the state with the fetched data
     useEffect(() => {
         if (groupId) {
             GroupService.getGroup(groupId).then((response) => {
@@ -23,6 +24,7 @@ const GroupEditPage = () => {
         }
     }, [groupId]);
 
+    // Handle input change in the form fields, updating the group state
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setGroup({
             ...group,
@@ -30,6 +32,7 @@ const GroupEditPage = () => {
         });
     };
 
+    // Save the group changes by sending updated data to the API
     const handleSaveGroup = () => {
         GroupService.updateGroup(group).then(() => {
             navigate(`/groups/${groupId}`);
@@ -38,6 +41,7 @@ const GroupEditPage = () => {
 
     return (
         <Box display="flex" flexDirection="column" gap={2} maxWidth="500px" margin="auto">
+            {/* Form field for editing the group name */}
             <TextField
                 label="Group Name"
                 name="groupName"
@@ -45,6 +49,7 @@ const GroupEditPage = () => {
                 onChange={handleInputChange}
                 fullWidth
             />
+            {/* Form field for editing the group motto */}
             <TextField
                 label="Group Motto"
                 name="groupMotto"
@@ -52,6 +57,7 @@ const GroupEditPage = () => {
                 onChange={handleInputChange}
                 fullWidth
             />
+            {/* Form field for editing the group logo URL */}
             <TextField
                 label="Group Logo URL"
                 name="groupLogoUrl"
@@ -59,6 +65,7 @@ const GroupEditPage = () => {
                 onChange={handleInputChange}
                 fullWidth
             />
+            {/* Button to save the changes made to the group */}
             <Button variant="contained" color="primary" onClick={handleSaveGroup}>
                 Save Changes
             </Button>
