@@ -35,7 +35,7 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/fe-ci-cd:latest
 
 
-    deploy:
+  deploy:
       runs-on: ubuntu-latest
       needs: docker
 
