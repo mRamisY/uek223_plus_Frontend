@@ -33,7 +33,7 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           args: >
-            -Dsonar.projectKey=nypag-1_uk-223-fe
+            -Dsonar.projectKey=nypag-1_uk-223
             -Dsonar.organization=nypag-1
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
