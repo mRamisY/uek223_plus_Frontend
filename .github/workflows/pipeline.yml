@@ -86,4 +86,4 @@ jobs:
           script: |
             cd ci-cd
             docker-compose -f docker-compose-fe.yml pull
-            docker-compose -f docker-compose-fe.yml up -d
+            docker compose -f docker-compose-fe.yml up -d
